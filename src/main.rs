@@ -2,8 +2,8 @@ use std::fs;
 use std::io::{self, Write};
 use std::iter::zip;
 
-use rand::{seq::SliceRandom, thread_rng};
 use colored::*;
+use rand::{seq::SliceRandom, thread_rng};
 
 const ALL_WORDS_FILENAME: &str = "all_words.txt";
 const CHOSEN_WORDS_FILENAME: &str = "chosen_words.txt";
@@ -99,9 +99,9 @@ fn main() {
         let hints = generate_hints(&guess, chosen_word);
         for (letter, hint) in zip(guess.chars(), hints) {
             let colored_letter = match hint {
-                Hint::Correct => letter.to_string().blink(),
+                Hint::Correct => letter.to_string().on_green(),
                 Hint::Close => letter.to_string().on_yellow(),
-                Hint::Wrong => letter.to_string().on_black()
+                Hint::Wrong => letter.to_string().on_black(),
             };
 
             print!("{} ", colored_letter);
